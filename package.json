@@ -1,0 +1,26 @@
+{
+  "name": "mqtt-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/node": "^16.11.10",
+    "ts-node": "10.7.0",
+    "typescript": "4.5.2"
+  },
+  "dependencies": {
+    "concurrently": "^8.0.1"
+  },
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "dev": "concurrently \"tsc --watch\" \"nodemon ./build/index.js\"",
+    "dev:ws": "concurrently \"tsc --watch\" \"nodemon ./build/ws_proxy.js\"",
+    "git:update": "git add . && git commit -m 'refresh' && git push origin main",
+    "sync": "git pull origin main && pm2 stop heleo && pm2 stop proxy && pm2 flush heleo && pm2 flush proxy && pm2 restart heleo && pm2 restart proxy && pm2 save && pm2 log"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
